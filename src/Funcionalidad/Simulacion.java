@@ -5,26 +5,30 @@
  */
 package Funcionalidad;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
-public class Simulacion {
+public class Simulacion extends Thread{
 
-    int tiempo;
+    int tiempoMaximo;
     int probabilidad;
+    int tiempoEsperaCola;
+    int tiempoEnServicio;
 
-    public Simulacion(int tiempo, int probabilidad) {
-        this.tiempo = tiempo;
-        this.probabilidad = probabilidad;
+    public Simulacion(int tiempoMaximo) {
+        this.tiempoMaximo = tiempoMaximo;
     }
 
     public int getTiempo() {
-        return tiempo;
+        return tiempoMaximo;
     }
 
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
+    public void setTiempo(int tiempoMaximo) {
+        this.tiempoMaximo = tiempoMaximo;
     }
 
     public int getProbabilidad() {
@@ -33,6 +37,22 @@ public class Simulacion {
 
     public void setProbabilidad(int probabilidad) {
         this.probabilidad = probabilidad;
+    }
+    /**
+     * Metodo del hilo
+     */
+    @Override
+    public void run(){
+        while(tiempoMaximo>0){
+        System.out.println("Hola");
+            try {
+                sleep(1000);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            tiempoMaximo--;
+        }
+    
     }
 
 }

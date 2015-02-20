@@ -5,6 +5,7 @@
  */
 package InterfazGrafica;
 
+import Funcionalidad.Cliente;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -46,6 +47,7 @@ public class GUI {
             @Override
             public void run() {
                 createAndShowGUI();
+                
             }
         });
     }

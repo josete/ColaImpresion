@@ -5,6 +5,8 @@
  */
 package InterfazGrafica;
 
+import Funcionalidad.Cliente;
+import Funcionalidad.Simulacion;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +47,9 @@ private void Situar_Munu(){
         System.out.println("Boton pulsado");
         //g.pintar(this.getGraphics());
         g.linea = true;
+        Simulacion s = new Simulacion(10);
+        s.start();
+        
     }
     
 }

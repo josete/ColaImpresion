@@ -13,6 +13,8 @@ public class Cliente {
 
     private String Nombre;
     private int numero;
+    int momentoEntradaCola;
+    int momentoEntradaServicio;
 
     public Cliente(String Nombre, int num) {
         this.Nombre = Nombre;
