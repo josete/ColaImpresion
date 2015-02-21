@@ -12,44 +12,61 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Usuario
+ * @author Rafael Murillo Zarza
  */
 public class Menu extends JPanel implements ActionListener {
 
-    JLabel jlabelNombre = new JLabel("Nombre Usuario");
-    JLabel jlabelElemntos = new JLabel("Introduzca nº elementos a imprimir");
-    JTextField textNombre = new JTextField();
-    JTextField textElemntos = new JTextField();
+    JLabel jlabelTiempoMx = new JLabel("Tiempo Simulacion");
+    public static JTextField textTiempo = new JTextField();
+    //Se inserta un boton que iniciara la simulacion
+    JButton btIniciar = new JButton("Iniciar Simulacion");
+    //Usaremos la clase Grafica para hacer el "dibujo" de la simulación
     Grafica g = new Grafica();
-    
-    JButton btImprimir = new JButton("Imprimir");
-    
-public Menu(){
-     super(new GridLayout(0,2));
-     Situar_Munu();
-}
+    boolean existe = true;
 
-private void Situar_Munu(){
-    this.add(jlabelNombre);
-    this.add(textNombre);
-    this.add(jlabelElemntos);
-    this.add(textElemntos);
-    btImprimir.addActionListener(this);
-    this.add(btImprimir);
-}
+    public Menu() {
+        //Donde se situa el panel
+        super(new GridLayout(0, 3));
+        Situar_Munu();
+    }
+
+    private void Situar_Munu() {
+        //Añadimos el tiempo de ejecucion 
+        this.add(jlabelTiempoMx);
+        this.add(textTiempo);
+        //Añadimos un Action listener (Para identificar el boton y tenga una accion)
+        btIniciar.addActionListener(this);
+        //Lo insertamos
+        this.add(btIniciar);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Boton pulsado");
-        //g.pintar(this.getGraphics());
-        g.linea = true;
-        Simulacion s = new Simulacion(10);
-        s.start();
-        
+
+        if (Funcionalidad.Metodos.ExisteTiempo()) {
+            Funcionalidad.Simulacion.setTiempo(Integer.parseInt(textTiempo.getText()));
+            //Cuando se pulsa el boton
+            textTiempo.setEnabled(false);
+            btIniciar.setEnabled(false);
+            System.out.println("Boton pulsado");
+            //Prueba de pintado en grafica
+            g.linea = true;
+            //Iniciamo el hilo que hara de cronometo, le pasamos el TIEMPO MAXIMO que durara la simulacion.
+            Simulacion s = new Simulacion(Funcionalidad.Simulacion.getTiempo());
+            s.start();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Por favor introduzca un numero.",
+                    "Numero incorrecto",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
     }
-    
+
 }

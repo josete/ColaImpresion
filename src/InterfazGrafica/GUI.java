@@ -15,18 +15,18 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author Usuario
+ * @author Rafael Murillo Zarza
  */
 public class GUI {
 
     private static void createAndShowGUI() {
-        SwingUtilities.isEventDispatchThread();
+        //SwingUtilities.isEventDispatchThread();
         JFrame f = new JFrame("Simulador Cola");
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        f.setLayout(new BorderLayout());
+        //f.setLayout(new BorderLayout());
         JPanel situacion = new JPanel();
-        situacion.setLayout(new BorderLayout());
-        situacion.add(new Menu(), BorderLayout.NORTH);
+        //situacion.setLayout(new BorderLayout());
+        situacion.add(new Menu(), BorderLayout.CENTER);
         f.add(situacion, BorderLayout.NORTH);
         f.add(new InterfazGrafica.Grafica(), BorderLayout.CENTER);
         f.add(new Datos(), BorderLayout.SOUTH);

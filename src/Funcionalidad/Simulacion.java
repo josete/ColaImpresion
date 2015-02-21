@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class Simulacion extends Thread{
 
-    int tiempoMaximo;
+    static int tiempoMaximo;
     int probabilidad;
     int tiempoEsperaCola;
     int tiempoEnServicio;
@@ -23,12 +23,13 @@ public class Simulacion extends Thread{
         this.tiempoMaximo = tiempoMaximo;
     }
 
-    public int getTiempo() {
+    public static int getTiempo() {
         return tiempoMaximo;
     }
 
-    public void setTiempo(int tiempoMaximo) {
-        this.tiempoMaximo = tiempoMaximo;
+    public static void setTiempo(int tiempoMaximo) {
+        //this.tiempoMaximo = tiempoMaximo;
+        Simulacion.tiempoMaximo = tiempoMaximo;
     }
 
     public int getProbabilidad() {

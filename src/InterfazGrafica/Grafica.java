@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Usuario
+ * @author Rafael Murillo Zarza
  */
 public class Grafica extends JPanel {
 
@@ -47,6 +47,8 @@ public class Grafica extends JPanel {
             g2.drawLine(20, 200, 100, 200);
             
         }
+        
+        //this.setBackground(Color.WHITE);
        repaint();
         
     }
