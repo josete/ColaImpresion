@@ -42,7 +42,7 @@ public class Metodos {
         int tiempoMed = tiempoTotalServicio / tiemposervicio.size();
         return tiempoMed;
     }
-
+/* NO HACER CASO
     //Tiempo maximo, se define en la interfaz
     public int TiempoMaximo(int t) {
         return t;
@@ -57,4 +57,5 @@ public class Metodos {
     public int TiempoEspera(int t) {
         return t;
     }
+   */
 }

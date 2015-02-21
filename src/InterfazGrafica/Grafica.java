@@ -34,9 +34,9 @@ public class Grafica extends JPanel {
         g.drawLine(20, 10, 20, 300);
         g.drawLine(10, 250, 550, 250);
 
-        for (int x = 0; x <= 20; x++) {
-            g.drawString(Integer.toString(x), 10 + (x * 25), 263);
-            g.drawLine(10 + (x * 25) + 3, 245, 10 + (x * 25) + 3, 252);
+        for (int x = 0; x <= Funcionalidad.Simulacion.getTiempo(); x++) {
+            g.drawString(Integer.toString(x), 10 + (x * 15), 263);
+            g.drawLine(10 + (x * 15) + 3, 245, 10 + (x * 15) + 3, 252);
 
         }
         if(linea){
