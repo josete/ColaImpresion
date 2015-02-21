@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author Rafael Murillo Zarza
  */
 public class Datos extends JPanel {
-    
+    //Donde se tintruduciran los datos
     static JLabel labelMaximo;
     static JLabel labelMinimo;
     static JLabel labelMedio;

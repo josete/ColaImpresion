@@ -5,7 +5,7 @@
  */
 package InterfazGrafica;
 
-import Funcionalidad.Cliente;
+
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
