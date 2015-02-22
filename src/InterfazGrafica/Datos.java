@@ -25,7 +25,7 @@ public class Datos extends JPanel {
    
 
     public Datos() {
-        labelMaximo = new JLabel("Tiempo Maximo: ");
+        labelMaximo = new JLabel("Tiempo Maximo: "+ Funcionalidad.Simulacion.getTiempo());
         labelMinimo = new JLabel("Tiempo Minimo: ");
         labelMedio = new JLabel("Tiempo Medio: ");
         LabelProporcionTiempoOcupado = new JLabel("Tiempo Ocupado: ");
@@ -34,7 +34,18 @@ public class Datos extends JPanel {
         this.add(labelMinimo);
         this.add(labelMedio);
         this.add(LabelProporcionTiempoOcupado);
-
+        
         this.setBackground(Color.ORANGE);
     }
+    public static void repintarDatos(){
+        
+        //System.out.println("ENTROOOOOOOOOOOO? "+Funcionalidad.Simulacion.getTiempo());
+        labelMaximo.setText("Tiempo Maximo: "+ Funcionalidad.Simulacion.getTiempo());
+        labelMinimo.setText("Tiempo Minimo: ");
+        labelMedio.setText("Tiempo Medio: ");
+        
+        
+        }
+    
+    
 }

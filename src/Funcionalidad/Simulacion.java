@@ -41,14 +41,16 @@ public class Simulacion extends Thread{
      */
     @Override
     public void run(){
-        while(tiempoMaximo>0){
-        System.out.println("Hola");
+        int provisional = tiempoMaximo;
+        while(provisional>0){
+        System.out.println("segundos: "+provisional);
+         InterfazGrafica.Datos.repintarDatos();
             try {
                 sleep(1000);
             } catch (InterruptedException ex) {
                 //Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
             }
-            tiempoMaximo--;
+            provisional--;
         }
     
     }

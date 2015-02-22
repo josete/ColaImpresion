@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public class Menu extends JPanel implements ActionListener {
 
-    JLabel jlabelTiempoMx = new JLabel("Tiempo Simulacion");
+    JLabel jlabelTiempoMx = new JLabel("Tiempo Simulacion (segundos) ");
     public static JTextField textTiempo = new JTextField();
     //Se inserta un boton que iniciara la simulacion
     JButton btIniciar = new JButton("Iniciar Simulacion");

@@ -17,7 +17,7 @@ public class Metodos {
     //Guadar tiempo que pasa cada cliente en servicio (Para poder calcular
     public static ArrayList<Integer> tiemposervicio = new ArrayList<Integer>();
 
-    //Para saber si han introducio un NUMERO ENTERO y no texto
+    //Para saber si han introducido un NÚMERO ENTERO y no texto
     public static boolean ExisteTiempo() {
         try {
             String num = InterfazGrafica.Menu.textTiempo.getText();
