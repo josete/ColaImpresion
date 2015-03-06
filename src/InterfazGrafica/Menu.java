@@ -49,7 +49,7 @@ public class Menu extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (Funcionalidad.Metodos.ExisteTiempo()) {
+        if (Funcionalidad.UtilidadesTiempo.ExisteTiempo()) {
             Funcionalidad.Simulacion.setTiempo(Integer.parseInt(textTiempo.getText()));
             //Cuando se pulsa el boton
             textTiempo.setEnabled(false);
