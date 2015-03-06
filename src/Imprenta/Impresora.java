@@ -13,6 +13,7 @@ package Imprenta;
 public class Impresora {
     
    private boolean ocupada;
+   
 
     public boolean isOcupada() {
         return ocupada;
