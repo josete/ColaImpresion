@@ -5,6 +5,9 @@
  */
 package Funcionalidad;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -41,17 +44,31 @@ public class Simulacion extends Thread{
      */
     @Override
     public void run(){
-        int provisional = tiempoMaximo;
-        while(provisional>0){
-        System.out.println("segundos: "+provisional);
-         InterfazGrafica.Datos.repintarDatos();
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {
-                //Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+        double creacionCliente = Math.random() * 1;
+        try {
+            if (creacionCliente >= 0.5) {
+
+                System.out.println(creacionCliente);
+                System.out.println("¡¡Hay un nuevo cliente!!");
+                System.out.println(" ");
+
+                //crear cliente
+                //Cliente("Angel", 12);
+                sleep(2000);
+
+            } else {
+                System.out.println(creacionCliente);
+                System.out.println("No hay nuevo cliente :(");
+                System.out.println(" ");
+
+                //no se crea cliente
+                sleep(2000);
+
             }
-            provisional--;
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     
     }
 
