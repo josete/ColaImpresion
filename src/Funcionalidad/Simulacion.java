@@ -5,6 +5,7 @@
  */
 package Funcionalidad;
 
+import Imprenta.Imprenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class Simulacion extends Thread{
-
+    private Imprenta imprenta=new Imprenta();
     static int tiempoMaximo;
     int probabilidad;
     int tiempoEsperaCola;
@@ -44,6 +45,7 @@ public class Simulacion extends Thread{
      */
     @Override
     public void run(){
+        while(tiempoMaximo>0){
         double creacionCliente = Math.random() * 1;
         try {
             if (creacionCliente >= 0.5) {
@@ -51,10 +53,11 @@ public class Simulacion extends Thread{
                 System.out.println(creacionCliente);
                 System.out.println("¡¡Hay un nuevo cliente!!");
                 System.out.println(" ");
-
+                imprenta.add(new Cliente("RAFA",tiempoMaximo,1));
                 //crear cliente
                 //Cliente("Angel", 12);
                 sleep(2000);
+                tiempoMaximo-=2;
 
             } else {
                 System.out.println(creacionCliente);
@@ -63,12 +66,12 @@ public class Simulacion extends Thread{
 
                 //no se crea cliente
                 sleep(2000);
-
+                tiempoMaximo-=2;
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        }
     
     }
 
