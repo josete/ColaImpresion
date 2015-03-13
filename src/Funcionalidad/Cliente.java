@@ -16,9 +16,10 @@ public class Cliente {
     int momentoEntradaCola;
     int momentoEntradaServicio;
 
-    public Cliente(String Nombre, int num) {
+    public Cliente(String Nombre, int momentoEntradaCola,int num) {
         this.Nombre = Nombre;
         this.numero = num;
+        this.momentoEntradaCola=momentoEntradaCola;
     }
 
     public String getNombre() {

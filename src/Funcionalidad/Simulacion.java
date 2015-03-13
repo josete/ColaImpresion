@@ -5,6 +5,7 @@
  */
 package Funcionalidad;
 
+import Imprenta.Imprenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,67 +13,76 @@ import java.util.logging.Logger;
  *
  * @author Usuario
  */
+
 public class Simulacion extends Thread {
 
+        private Imprenta imprenta = new Imprenta();
     static int tiempoMaximo;
-    int probabilidad;
-    int tiempoEsperaCola;
-    int tiempoEnServicio;
+        int probabilidad;
+        int tiempoEsperaCola;
+        int tiempoEnServicio;
 
-    public Simulacion(int tiempoMaximo) {
-        this.tiempoMaximo = tiempoMaximo;
-    }
-
-    public static int getTiempo() {
-        return tiempoMaximo;
-    }
-
-    public static void setTiempo(int tiempoMaximo) {
-        //this.tiempoMaximo = tiempoMaximo;
-        Simulacion.tiempoMaximo = tiempoMaximo;
-    }
-
-    public int getProbabilidad() {
-        return probabilidad;
-    }
-
-    public void setProbabilidad(int probabilidad) {
-        this.probabilidad = probabilidad;
-    }
-
-    /**
-     * Metodo del hilo
-     */
-    @Override
-    public void run() {
-        while (tiempoMaximo > 0) {
-
-            double creacionCliente = Math.random() * 1;
-            try {
-                if (creacionCliente >= 0.5) {
-
-                    System.out.println(creacionCliente);
-                    System.out.println("¡¡Hay un nuevo cliente!!");
-                    System.out.println(" ");
-
-                    //crear cliente
-                    //Cliente("Angel", 12);
-                    sleep(2000);
-
-                } else {
-                    System.out.println(creacionCliente);
-                    System.out.println("No hay nuevo cliente :(");
-                    System.out.println(" ");
-
-                    //no se crea cliente
-                    sleep(2000);
-
-                }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        public Simulacion(int tiempoMaximo) {
+            this.tiempoMaximo = tiempoMaximo;
         }
 
-    }
+        public static int getTiempo() {
+            return tiempoMaximo;
+        }
 
-}
+        public static void setTiempo(int tiempoMaximo) {
+            //this.tiempoMaximo = tiempoMaximo;
+            Simulacion.tiempoMaximo = tiempoMaximo;
+        }
+
+        public int getProbabilidad() {
+            return probabilidad;
+        }
+
+        public void setProbabilidad(int probabilidad) {
+            this.probabilidad = probabilidad;
+        }
+
+        /**
+         * Metodo del hilo
+         */
+        @Override
+        public void run() {
+            while (tiempoMaximo > 0) {
+                try {
+                double creacionCliente = Math.random() * 1;
+                            if (creacionCliente >= 0.5) {
+
+                                System.out.println(creacionCliente);
+                                System.out.println("¡¡Hay un nuevo cliente!!");
+                                System.out.println(" ");
+                                System.out.println(creacionCliente);
+                                System.out.println("¡¡Hay un nuevo cliente!!");
+                                System.out.println(" ");
+                                imprenta.add(new Cliente("RAFA", tiempoMaximo, 1));
+                //crear cliente
+                                //Cliente("Angel", 12);
+                                sleep(2000);
+                                tiempoMaximo -= 2;
+
+                    //crear cliente
+                                //Cliente("Angel", 12);
+                                sleep(2000);
+
+                            } else {
+                                System.out.println(creacionCliente);
+                                System.out.println("No hay nuevo cliente :(");
+                                System.out.println(" ");
+
+                                //no se crea cliente
+                                sleep(2000);
+
+                            }
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                }
+            }
+
