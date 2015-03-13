@@ -6,13 +6,16 @@
 
 package Imprenta;
 
+import Funcionalidad.Cliente;
+
 /**
  *
  * @author PC-Portatil
  */
 public class Impresora {
     
-   private boolean ocupada;
+   private boolean ocupada = false;
+   private Cliente cliente;
    
 
     public boolean isOcupada() {
@@ -22,6 +25,15 @@ public class Impresora {
     public void setOcupada(boolean ocupada) {
         this.ocupada = ocupada;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
    
+    
    
 }

@@ -13,76 +13,90 @@ import java.util.logging.Logger;
  *
  * @author Usuario
  */
-
 public class Simulacion extends Thread {
 
-        private Imprenta imprenta = new Imprenta();
+    private Imprenta imprenta = new Imprenta();
     static int tiempoMaximo;
-        int probabilidad;
-        int tiempoEsperaCola;
-        int tiempoEnServicio;
+    int probabilidad;
+    int tiempoEsperaCola;
+    int tiempoEnServicio;
+    int tiempoServicioCliente;
+    int tiempoServicioAleatorio = 0;
+    int i = 0;
 
-        public Simulacion(int tiempoMaximo) {
-            this.tiempoMaximo = tiempoMaximo;
-        }
+    public Simulacion(int tiempoMaximo) {
+        this.tiempoMaximo = tiempoMaximo;
+        imprenta.setTiempoMax(10);
+        imprenta.setTiempoMin(1);
+    }
 
-        public static int getTiempo() {
-            return tiempoMaximo;
-        }
+    public static int getTiempo() {
+        return tiempoMaximo;
+    }
 
-        public static void setTiempo(int tiempoMaximo) {
-            //this.tiempoMaximo = tiempoMaximo;
-            Simulacion.tiempoMaximo = tiempoMaximo;
-        }
+    public static void setTiempo(int tiempoMaximo) {
+        //this.tiempoMaximo = tiempoMaximo;
+        Simulacion.tiempoMaximo = tiempoMaximo;
+    }
 
-        public int getProbabilidad() {
-            return probabilidad;
-        }
+    public int getProbabilidad() {
+        return probabilidad;
+    }
 
-        public void setProbabilidad(int probabilidad) {
-            this.probabilidad = probabilidad;
-        }
+    public void setProbabilidad(int probabilidad) {
+        this.probabilidad = probabilidad;
+    }
 
-        /**
-         * Metodo del hilo
-         */
-        @Override
-        public void run() {
-            while (tiempoMaximo > 0) {
-                try {
-                double creacionCliente = Math.random() * 1;
-                            if (creacionCliente >= 0.5) {
+    /**
+     * Metodo del hilo
+     */
+    @Override
+    public void run() {
+        while (tiempoMaximo > 0) {
+            double creacionCliente = Math.random() * 1;
+            try {
+                if (creacionCliente >= 0.5) {
 
-                                System.out.println(creacionCliente);
-                                System.out.println("¡¡Hay un nuevo cliente!!");
-                                System.out.println(" ");
-                                System.out.println(creacionCliente);
-                                System.out.println("¡¡Hay un nuevo cliente!!");
-                                System.out.println(" ");
-                                imprenta.add(new Cliente("RAFA", tiempoMaximo, 1));
-                //crear cliente
-                                //Cliente("Angel", 12);
-                                sleep(2000);
-                                tiempoMaximo -= 2;
-
+                    System.out.println(creacionCliente);
+                    System.out.println("¡¡Hay un nuevo cliente!!");
+                    System.out.println(" ");
+                    imprenta.anadirCliente(new Cliente("RAFA", tiempoMaximo, i));
+                    i++;
+                    //System.out.println(imprenta.eliminarCliente().toString());
                     //crear cliente
-                                //Cliente("Angel", 12);
-                                sleep(2000);
-
-                            } else {
-                                System.out.println(creacionCliente);
-                                System.out.println("No hay nuevo cliente :(");
-                                System.out.println(" ");
-
-                                //no se crea cliente
-                                sleep(2000);
-
-                            }
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+                    //Cliente("Angel", 12);
+                    sleep(2000);
+                    tiempoMaximo -= 2;
+                }
+                if (imprenta.isEmpty() == false) {
+                    
+                    if (imprenta.getImpresora().isOcupada() == false) {
+                        tiempoServicioAleatorio = (int) (Math.random() * (imprenta.getTiempoMax()- imprenta.getTiempoMin() + 1) + imprenta.getTiempoMin());
+                        imprenta.getImpresora().setOcupada(true);
+                        imprenta.getImpresora().setCliente(imprenta.eliminarCliente());
+                    } else {
+                        System.err.println(tiempoServicioAleatorio);
+                        System.out.println(tiempoServicioCliente);                        
+                        tiempoServicioCliente+=1;
+                        System.out.println(tiempoServicioCliente);
+                        System.out.println(imprenta.getImpresora().getCliente().toString());
+                        if (tiempoServicioCliente == tiempoServicioAleatorio) {
+                            imprenta.getImpresora().setOcupada(false);
+                            tiempoServicioCliente = 0;
                         }
                     }
+                    //System.err.println("El cliente que esta en la impresora es: "
+                            //+ imprenta.getImpresora().getCliente().toString());
 
                 }
+                /**
+                 * Metodo del hilo
+                 */
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
+        }
+    }
+}

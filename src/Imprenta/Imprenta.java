@@ -13,7 +13,7 @@ public class Imprenta extends Cola {
 
     private int tiempoMin;
     private int tiempoMax;
-    private final Impresora impresora;
+    private Impresora impresora;
 
     public Imprenta() {
         impresora = new Impresora();
@@ -34,5 +34,17 @@ public class Imprenta extends Cola {
     public void setTiempoMax(int tiempoMax) {
         this.tiempoMax = tiempoMax;
     }
+
+    public Impresora getImpresora() {
+        return impresora;
+    }
+
+    public void setImpresora(Impresora impresora) {
+        this.impresora = impresora;
+    }
+    
+    
+    
+    
 
 }

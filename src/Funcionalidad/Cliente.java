@@ -37,4 +37,11 @@ public class Cliente {
     public void setnumero(int numero) {
         this.numero = numero;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "Nombre=" + Nombre + ", numero=" + numero + '}';
+    }
+
+    
 }
