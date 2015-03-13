@@ -54,6 +54,7 @@ public class Simulacion extends Thread{
                 System.out.println("¡¡Hay un nuevo cliente!!");
                 System.out.println(" ");
                 imprenta.add(new Cliente("RAFA",tiempoMaximo,1));
+                System.out.println(imprenta.remove().toString());
                 //crear cliente
                 //Cliente("Angel", 12);
                 sleep(2000);

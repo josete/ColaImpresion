@@ -9,6 +9,7 @@ package Imprenta;
 import Funcionalidad.Cliente;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -16,10 +17,13 @@ import java.util.Queue;
  * @author PC-Portatil
  */
 public class Cola implements Queue<Cliente>{
-
+    
+    Queue<Cliente> cola = new LinkedList<>();
+    
     @Override
     public boolean add(Cliente e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cola.add(e);
     }
 
     @Override
@@ -29,7 +33,8 @@ public class Cola implements Queue<Cliente>{
 
     @Override
     public Cliente remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cola.remove();
     }
 
     @Override
