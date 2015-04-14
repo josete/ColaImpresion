@@ -18,10 +18,11 @@ import javax.swing.SwingUtilities;
  * @author Rafael Murillo Zarza
  */
 public class GUI {
-
+    static JFrame f;
+    
     private static void createAndShowGUI() {
         //SwingUtilities.isEventDispatchThread();
-        JFrame f = new JFrame("Simulador Cola");
+        f = new JFrame("Simulador Cola");
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //f.setLayout(new BorderLayout());
         JPanel situacion = new JPanel();
@@ -37,7 +38,7 @@ public class GUI {
             }
         });
         f.setVisible(true);
-        f.setSize(600, 400);
+        f.setSize(610, 700);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
     }

@@ -5,7 +5,10 @@
  */
 package InterfazGrafica;
 
+import Funcionalidad.Cliente;
+import Funcionalidad.UtilidadesTiempo;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -16,8 +19,10 @@ import javax.swing.JPanel;
  */
 public class Grafica extends JPanel {
 
-    static public boolean linea = false;
+    static public boolean inicio = false;
     static Graphics2D g2;
+    public static Font fuente = new Font("Comic Sans MS", Font.BOLD, 15);
+    public static Font fuente2 = new Font("Roman", Font.PLAIN, 12);
 
     public Grafica() {
 
@@ -25,40 +30,134 @@ public class Grafica extends JPanel {
 
     @Override
     public void paint(Graphics g) {
+
         super.paintComponent(g);
         g2 = (Graphics2D) g;
-        g.drawString("Procesos", 2, 10);
-        g.drawString("Tiempo", 550, 280);
-        //x: arriba y: arriba; 
-        //x:abajo y:abajo;
-        g.drawLine(20, 10, 20, 300);
-        g.drawLine(10, 250, 580, 250);
-        g.drawString(Integer.toString(0), 10, 263);
 
-        if (linea) {
-            int distancia = 540 / Funcionalidad.Simulacion.getTiempo();
-            for (int x = 1; x <= Funcionalidad.Simulacion.getTiempo(); x++) {
-                if (Funcionalidad.Simulacion.getTiempo() > 30) {
-                    if (x % 2 == 0) {
-                        g.drawString(Integer.toString(x), 10 + (x * distancia), 263);
-                    }
-                } else {
-                    g.drawString(Integer.toString(x), 10 + (x * distancia), 263);
-                }
+        dibujoGrafica();
 
-                g.drawLine(17 + (x * distancia) + 3, 245, 17 + (x * distancia) + 3, 252);
+        dibujoTabla();
 
-            }
-            g2.drawString("Prueba de pintado", 100, 100);
-            g2.setColor(Color.red);
-
-            //g2.fillRect(10, 10, 100, 100);
-            g2.drawLine(20, 200, 100, 200);
-
+        if (inicio) {
+            dibujoInicioSimulacion();
         }
 
-        //this.setBackground(Color.WHITE);
         repaint();
+
+    }
+
+    public void dibujoInicioSimulacion() {
+        g2.setFont(fuente2);
+        
+        //Si hay cliente se pinta
+        if (!Funcionalidad.UtilidadesTiempo.clientes.isEmpty()) {
+            //g.drawLine(40, 360, 500, 360);
+            dibujoCliente();
+        }
+        //Se dibuja la grafica
+        int distancia = 540 / Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica();// linea "X" distancia entre timepos
+        for (int x = 1; x <= Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica(); x++) {
+            //Mayor de 30 solo pinta de 10 en 10
+            if (Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica() > 30) {
+                if (x % 10 == 0) {
+                    g2.drawString(Integer.toString(x), 10 + (x * distancia), 263);
+                }
+            } else {
+                g2.drawString(Integer.toString(x), 10 + (x * distancia), 263);
+            }
+            //Dibuja la linea
+            g2.drawLine(17 + (x * distancia) + 3, 245, 17 + (x * distancia) + 3, 252);
+            //repinta parte de abajo
+            Datos.repintarDatos();
+        }
+//        g2.drawString("Prueba de pintado", 100, 100);
+//        g2.setColor(Color.red);
+//        g2.drawLine(20, 200, 100, 200);
+
+    }
+
+    public void dibujoGrafica() {
+        //Base de la grafica, linea X Y y su definicion
+        g2.drawString("Nº Cliente", 2, 9);
+        g2.drawString("Tiempo", 550, 280);
+        //x: arriba y: arriba; 
+        //x:abajo y:abajo;
+        g2.drawLine(20, 10, 20, 270);
+        g2.drawLine(10, 250, 580, 250);
+        g2.drawString(Integer.toString(0), 10, 263);
+        
+    }
+
+    public void dibujoTabla() {
+        g2.setColor(Color.black);
+
+        //+610,-310,+610,-310
+        g2.drawLine(650, 10, 1110, 10);
+        g2.drawLine(650, 40, 1110, 40);
+        //g2.drawLine(650, 500, 1110, 500);
+
+        //Linea horizontal arriba
+        g2.drawLine(40, 330, 590, 330);
+        //Linea horizontal abajo
+        g2.drawLine(40, 500, 590, 500);
+        //Linea horizontal 2 (divisor)
+        g2.drawLine(40, 360, 590, 360);
+
+        g2.drawLine(40, 330, 40, 500);
+        g2.drawLine(110, 330, 110, 500);
+        g2.drawLine(260, 330, 260, 500);
+        g2.drawLine(390, 330, 390, 500);
+        g2.drawLine(500, 330, 500, 500);
+        g2.drawLine(590, 330, 590, 500);
+        
+        
+        g2.setFont(fuente);
+        g2.setColor(Color.GREEN);
+        g2.drawString("Clientes", 50, 350);
+        g2.drawString("Tiempo en Servicio", 120, 350);
+        g2.drawString("Tiempo en Cola", 270, 350);
+        g2.drawString("Tiempo Total", 400, 350);
+        g2.drawString("Atendido", 510, 350);
+        
+        
+        g2.drawString("Clientes", 660, 30);
+        g2.drawString("Tiempo en Servicio", 730, 30);
+        g2.drawString("Tiempo en Cola", 880, 30);
+        g2.drawString("Tiempo Total", 1010, 30);
+        g2.drawString("Atendido", 1240, 30);
+        
+
+        g2.setColor(Color.RED);
+        g2.drawString("Tiempo Media Total Espera", 50, 520);
+        g2.drawString("Tiempo Medio Total Servicio", 50, 540);
+        g2.drawString("Tiempo Medio Total del sistema", 50, 560);
+
+    }
+
+    public void dibujoCliente() {
+        g2.setFont(fuente2);
+        int n;
+        //Pintar contenido de la tabla y ampliarla si es necesario
+        for (int x = 0, y = 1, i = 1, j = 0; x < Funcionalidad.UtilidadesTiempo.clientes.size(); x = x + 2, y = y + 2, i++,j++) {
+            g2.setColor(Color.BLACK);
+            if (y > 22) {
+                GUI.f.setSize(1200, 700);
+                GUI.f.setLocationRelativeTo(null);
+                g2.drawString("" + UtilidadesTiempo.clientes.get(j).getnumero(), 652, 55 + (j * 6));
+                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 670, 55 + (j * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 780, 55 + (j * 6));
+            } else {
+                g2.drawString("" + UtilidadesTiempo.clientes.get(j).getnumero(), 42, 375 + (x * 6));
+                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 62, 375 + (x * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 172, 375 + (x * 6));
+            }
+            if (Funcionalidad.UtilidadesTiempo.clientes.size() < 14) {
+                n = 20;
+            } else {
+                n = 10;
+            }
+            g2.drawString("" + i, 3, 240 - (x * n));
+        }
 
     }
 

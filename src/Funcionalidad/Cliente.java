@@ -38,6 +38,16 @@ public class Cliente {
         this.numero = numero;
     }
 
+    public int getMomentoEntradaCola() {
+        return momentoEntradaCola;
+    }
+
+    public void setMomentoEntradaCola(int momentoEntradaCola) {
+        this.momentoEntradaCola = momentoEntradaCola;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Cliente{" + "Nombre=" + Nombre + ", numero=" + numero + '}';

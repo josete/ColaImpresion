@@ -6,6 +6,7 @@
 package Funcionalidad;
 
 import Imprenta.Imprenta;
+import java.awt.SystemColor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ public class Simulacion extends Thread {
 
     private Imprenta imprenta = new Imprenta();
     static int tiempoMaximo;
+    private UtilidadesTiempo util = new UtilidadesTiempo();
     int probabilidad;
     int tiempoEsperaCola;
     int tiempoEnServicio;
@@ -57,10 +59,13 @@ public class Simulacion extends Thread {
             try {
                 if (creacionCliente >= 0.5) {
 
-                    System.out.println(creacionCliente);
-                    System.out.println("¡¡Hay un nuevo cliente!!");
-                    System.out.println(" ");
-                    imprenta.anadirCliente(new Cliente("RAFA", tiempoMaximo, i));
+                    //System.out.println(creacionCliente);
+                    //System.out.println("¡¡Hay un nuevo cliente!!");
+                    //System.out.println(" ");
+                    Cliente c= new Cliente("RAFA", tiempoMaximo, i);
+                    imprenta.anadirCliente(c);
+                    util.TmEnServicio(c);
+                    System.out.println("El cliente es: "+c.toString());
                     i++;
                     //System.out.println(imprenta.eliminarCliente().toString());
                     //crear cliente
@@ -75,18 +80,18 @@ public class Simulacion extends Thread {
                         imprenta.getImpresora().setOcupada(true);
                         imprenta.getImpresora().setCliente(imprenta.eliminarCliente());
                     } else {
-                        System.err.println(tiempoServicioAleatorio);
-                        System.out.println(tiempoServicioCliente);                        
+                        ///System.err.println("Tiempo de servicio Aleatorio: "+tiempoServicioAleatorio);
+                        //System.out.println("Tiempo de servicio de cliente: "+tiempoServicioCliente);                        
                         tiempoServicioCliente+=1;
-                        System.out.println(tiempoServicioCliente);
-                        System.out.println(imprenta.getImpresora().getCliente().toString());
+                        //System.out.println("Tiempo de servicio de cliente: "+tiempoServicioCliente);
+                        //System.out.println(imprenta.getImpresora().getCliente().toString());
                         if (tiempoServicioCliente == tiempoServicioAleatorio) {
                             imprenta.getImpresora().setOcupada(false);
                             tiempoServicioCliente = 0;
                         }
                     }
-                    //System.err.println("El cliente que esta en la impresora es: "
-                            //+ imprenta.getImpresora().getCliente().toString());
+                    /*System.err.println("El cliente que esta en la impresora es: "
+                            + imprenta.getImpresora().getCliente().toString());*/
 
                 }
                 /**
