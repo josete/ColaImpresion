@@ -135,21 +135,22 @@ public class Grafica extends JPanel {
     }
 
     public void dibujoCliente() {
-        g2.setFont(fuente2);
+      g2.setFont(fuente2);
         int n;
         //Pintar contenido de la tabla y ampliarla si es necesario
-        for (int x = 0, y = 1, i = 1, j = 0; x < Funcionalidad.UtilidadesTiempo.clientes.size(); x = x + 2, y = y + 2, i++,j++) {
+        for (int x = 0, eje_y1 = 0,eje_y2 = 0, i = 1, j = 0; x < UtilidadesTiempo.clientes.size(); x++, eje_y1 = eje_y1 + 2, i++,j++) {
             g2.setColor(Color.BLACK);
-            if (y > 22) {
-                GUI.f.setSize(1200, 700);
+            if (eje_y1 > 20) {
+            GUI.f.setSize(1200, 700);
                 GUI.f.setLocationRelativeTo(null);
-                g2.drawString("" + UtilidadesTiempo.clientes.get(j).getnumero(), 652, 55 + (j * 6));
-                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 670, 55 + (j * 6));
-                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 780, 55 + (j * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getnumero(), 652, 55 + (eje_y2 * 6));
+                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 670, 55 + (eje_y2 * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 780, 55 + (eje_y2 * 6));
+                eje_y2 += 2;
             } else {
-                g2.drawString("" + UtilidadesTiempo.clientes.get(j).getnumero(), 42, 375 + (x * 6));
-                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 62, 375 + (x * 6));
-                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 172, 375 + (x * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getnumero(), 42, 375 + (eje_y1 * 6));
+                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 62, 375 + (eje_y1 * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 172, 375 + (eje_y1 * 6));
             }
             if (Funcionalidad.UtilidadesTiempo.clientes.size() < 14) {
                 n = 20;
@@ -158,6 +159,7 @@ public class Grafica extends JPanel {
             }
             g2.drawString("" + i, 3, 240 - (x * n));
         }
+       
 
     }
 
