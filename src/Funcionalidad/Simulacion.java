@@ -7,6 +7,7 @@ package Funcionalidad;
 
 import Imprenta.Imprenta;
 import java.awt.SystemColor;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,20 @@ public class Simulacion extends Thread {
     int tiempoServicioCliente;
     int tiempoServicioAleatorio = 0;
     int i = 0;
+    
+    String[]pilaNombres={"Pedro", "Pablo","Rafa", "Jose", "Angel", "Cristiano", "Raúl", "Gareth","Federico",
+        "Iker", "Saúl","Walter","Jessie","Roberto","Andrea","Lucía","Julia", "Catalina","Azucena",
+        "Alejandro","Álvaro","Alberto", "Olga", "Laura",
+        "Patricia","Borja","Marta","Macarena","Irina", "Armando","Aitor", "Ester","Jonhy","Nicolás",
+    "Fernando","Javier","Lorena","Ignacio","María","Carmen","Antonio","Jesús","Ana","Paloma","Miguel"};
+    String[]pilaApellidos={"García","Tortilla","Cristo","González", "Laso",
+        "Nadal","López","Fernández","Shaik","Tormenta","Castillo","Torres","Núñez","Moreno","Murillo","Casillas"};
+    public String generarNombre(){
+        Random rnd = new Random();
+        int generado=(int)(rnd.nextDouble()*pilaNombres.length);
+        int generado2=(int)(rnd.nextDouble()*pilaApellidos.length);
+        return pilaNombres[generado]+" "+pilaApellidos[generado2];
+    }
 
     public Simulacion(int tiempoMaximo) {
         this.tiempoMaximo = tiempoMaximo;
@@ -48,6 +63,8 @@ public class Simulacion extends Thread {
     public void setProbabilidad(int probabilidad) {
         this.probabilidad = probabilidad;
     }
+   
+    
 
     /**
      * Metodo del hilo
@@ -62,7 +79,7 @@ public class Simulacion extends Thread {
                     //System.out.println(creacionCliente);
                     //System.out.println("¡¡Hay un nuevo cliente!!");
                     //System.out.println(" ");
-                    Cliente c= new Cliente("RAFA", tiempoMaximo, i);
+                    Cliente c= new Cliente(generarNombre(), tiempoMaximo, i);
                     imprenta.anadirCliente(c);
                     util.TmEnServicio(c);
                     System.out.println("El cliente es: "+c.toString());
