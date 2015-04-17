@@ -34,7 +34,7 @@ public class Grafica extends JPanel {
         super.paintComponent(g);
         g2 = (Graphics2D) g;
 
-        dibujoGrafica();
+        //dibujoGrafica();
 
         dibujoTabla();
 
@@ -55,7 +55,7 @@ public class Grafica extends JPanel {
             dibujoCliente();
         }
         //Se dibuja la grafica
-        int distancia = 540 / Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica();// linea "X" distancia entre timepos
+       /* int distancia = 540 / Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica();// linea "X" distancia entre timepos
         for (int x = 1; x <= Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica(); x++) {
             //Mayor de 30 solo pinta de 10 en 10
             if (Funcionalidad.UtilidadesTiempo.getTiempoMaximoGrafica() > 30) {
@@ -73,7 +73,7 @@ public class Grafica extends JPanel {
 //        g2.drawString("Prueba de pintado", 100, 100);
 //        g2.setColor(Color.red);
 //        g2.drawLine(20, 200, 100, 200);
-
+*/
     }
 
     public void dibujoGrafica() {
@@ -97,27 +97,27 @@ public class Grafica extends JPanel {
         //g2.drawLine(650, 500, 1110, 500);
 
         //Linea horizontal arriba
-        g2.drawLine(40, 330, 590, 330);
+        g2.drawLine(40, 0, 590, 0);
         //Linea horizontal abajo
         g2.drawLine(40, 500, 590, 500);
         //Linea horizontal 2 (divisor)
-        g2.drawLine(40, 360, 590, 360);
+        g2.drawLine(40, 30, 590, 30);
 
-        g2.drawLine(40, 330, 40, 500);
-        g2.drawLine(110, 330, 110, 500);
-        g2.drawLine(260, 330, 260, 500);
-        g2.drawLine(390, 330, 390, 500);
-        g2.drawLine(500, 330, 500, 500);
-        g2.drawLine(590, 330, 590, 500);
+        g2.drawLine(40, 0, 40, 500);
+        g2.drawLine(110, 0, 110, 500);
+        g2.drawLine(260, 0, 260, 500);
+        g2.drawLine(390, 0, 390, 500);
+        g2.drawLine(500, 0, 500, 500);
+        g2.drawLine(590, 0, 590, 500);
         
         
         g2.setFont(fuente);
         g2.setColor(Color.GREEN);
-        g2.drawString("Clientes", 50, 350);
-        g2.drawString("Tiempo en Servicio", 120, 350);
-        g2.drawString("Tiempo en Cola", 270, 350);
-        g2.drawString("Tiempo Total", 400, 350);
-        g2.drawString("Atendido", 510, 350);
+        g2.drawString("Clientes", 50, 15);
+        g2.drawString("Tiempo en Servicio", 120, 15);
+        g2.drawString("Tiempo en Cola", 270, 15);
+        g2.drawString("Tiempo Total", 400, 15);
+        g2.drawString("Atendido", 510, 15);
         
         
         g2.drawString("Clientes", 660, 30);
@@ -148,16 +148,16 @@ public class Grafica extends JPanel {
                 g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 780, 55 + (eje_y2 * 6));
                 eje_y2 += 2;
             } else {
-                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getnumero(), 42, 375 + (eje_y1 * 6));
-                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 62, 375 + (eje_y1 * 6));
-                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 172, 375 + (eje_y1 * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getnumero(), 42, 42 + (eje_y1 * 6));
+                g2.drawString(UtilidadesTiempo.clientes.get(j).getNombre(), 62, 42 + (eje_y1 * 6));
+                g2.drawString(""+UtilidadesTiempo.clientes.get(j).getMomentoEntradaCola(), 172, 42 + (eje_y1 * 6));
             }
-            if (Funcionalidad.UtilidadesTiempo.clientes.size() < 14) {
+            if (UtilidadesTiempo.clientes.size() < 50) {
                 n = 20;
             } else {
                 n = 10;
             }
-            g2.drawString("" + i, 3, 240 - (x * n));
+            //g2.drawString("" + i, 3, 240 - (x * n));
         }
        
 
