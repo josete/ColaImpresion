@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class Simulacion extends Thread {
-
+    Random rnd = new Random();
     private Imprenta imprenta = new Imprenta();
     static int tiempoMaximo;
     private UtilidadesTiempo util = new UtilidadesTiempo();
@@ -37,7 +37,7 @@ public class Simulacion extends Thread {
         "Casillas","Mouse","Iglesias","Benz","White","Pinkman","Pérez","Gómez","Manzano","Martínez",
         "Fuertes" };
     public String generarNombre(){
-        Random rnd = new Random();
+        
         int generado=(int)(rnd.nextDouble()*pilaNombres.length);
         int generado2=(int)(rnd.nextDouble()*pilaApellidos.length);
         return pilaNombres[generado]+" "+pilaApellidos[generado2];
@@ -74,7 +74,8 @@ public class Simulacion extends Thread {
     @Override
     public void run() {
         while (tiempoMaximo > 0) {
-            double creacionCliente = Math.random() * 1;
+            double creacionCliente = rnd.nextDouble() * 1;
+            System.out.println(creacionCliente);
             try {
                 if (creacionCliente >= 0.5) {
 
@@ -89,6 +90,10 @@ public class Simulacion extends Thread {
                     //System.out.println(imprenta.eliminarCliente().toString());
                     //crear cliente
                     //Cliente("Angel", 12);
+                    sleep(2000);
+                    tiempoMaximo -= 2;
+                }
+                else{
                     sleep(2000);
                     tiempoMaximo -= 2;
                 }
