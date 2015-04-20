@@ -26,14 +26,16 @@ public class Simulacion extends Thread {
     int tiempoServicioCliente;
     int tiempoServicioAleatorio = 0;
     int i = 0;
-    
     String[]pilaNombres={"Pedro", "Pablo","Rafa", "Jose", "Angel", "Cristiano", "Raúl", "Gareth","Federico",
         "Iker", "Saúl","Walter","Jessie","Roberto","Andrea","Lucía","Julia", "Catalina","Azucena",
         "Alejandro","Álvaro","Alberto", "Olga", "Laura",
         "Patricia","Borja","Marta","Macarena","Irina", "Armando","Aitor", "Ester","Jonhy","Nicolás",
-    "Fernando","Javier","Lorena","Ignacio","María","Carmen","Antonio","Jesús","Ana","Paloma","Miguel"};
-    String[]pilaApellidos={"García","Tortilla","Cristo","González", "Laso",
-        "Nadal","López","Fernández","Shaik","Tormenta","Castillo","Torres","Núñez","Moreno","Murillo","Casillas"};
+        "Fernando","Javier","Lorena","Ignacio","María","Carmen","Antonio","Jesús","Ana","Paloma","Miguel",
+        "Jaime","Mickey","Mercedes","Dolores","Gustavo","Sergio","Carlos","Paula","Rita",""};
+    String[]pilaApellidos={"García","Tilla","Cristo","González", "Laso",
+        "Nadal","López","Fernández","Shaik","Tormenta","Castillo","Torres","Núñez","Moreno","Murillo",
+        "Casillas","Mouse","Iglesias","Benz","White","Pinkman","Pérez","Gómez","Manzano","Martínez",
+        "Fuertes" };
     public String generarNombre(){
         Random rnd = new Random();
         int generado=(int)(rnd.nextDouble()*pilaNombres.length);
@@ -77,8 +79,8 @@ public class Simulacion extends Thread {
                 if (creacionCliente >= 0.5) {
 
                     //System.out.println(creacionCliente);
-                    //System.out.println("¡¡Hay un nuevo cliente!!");
-                    //System.out.println(" ");
+                    System.out.println("¡¡Hay un nuevo cliente!!");
+                    System.out.println(" ");
                     Cliente c= new Cliente(generarNombre(), tiempoMaximo, i);
                     imprenta.anadirCliente(c);
                     util.TmEnServicio(c);
@@ -96,7 +98,8 @@ public class Simulacion extends Thread {
                         tiempoServicioAleatorio = (int) (Math.random() * (imprenta.getTiempoMax()- imprenta.getTiempoMin() + 1) + imprenta.getTiempoMin());
                         imprenta.getImpresora().setOcupada(true);
                         imprenta.getImpresora().setCliente(imprenta.eliminarCliente());
-                    } else {
+                    } 
+                    else {
                         ///System.err.println("Tiempo de servicio Aleatorio: "+tiempoServicioAleatorio);
                         //System.out.println("Tiempo de servicio de cliente: "+tiempoServicioCliente);                        
                         tiempoServicioCliente+=1;
