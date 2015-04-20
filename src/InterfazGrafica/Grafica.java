@@ -140,7 +140,7 @@ public class Grafica extends JPanel {
         //Pintar contenido de la tabla y ampliarla si es necesario
         for (int x = 0, eje_y1 = 0,eje_y2 = 0, i = 1, j = 0; x < UtilidadesTiempo.clientes.size(); x++, eje_y1 = eje_y1 + 2, i++,j++) {
             g2.setColor(Color.BLACK);
-            if (eje_y1 > 20) {
+            if (eje_y1 > 74) {
             GUI.f.setSize(1200, 700);
                 GUI.f.setLocationRelativeTo(null);
                 g2.drawString(""+UtilidadesTiempo.clientes.get(j).getnumero(), 652, 55 + (eje_y2 * 6));
