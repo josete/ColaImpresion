@@ -15,6 +15,8 @@ public class Cliente {
     private int numero;
     int momentoEntradaCola;
     int momentoEntradaServicio;
+    int tiempoServicio;
+    int tiempoSistema;
 
     public Cliente(String Nombre, int momentoEntradaCola,int num) {
         this.Nombre = Nombre;
@@ -45,9 +47,31 @@ public class Cliente {
     public void setMomentoEntradaCola(int momentoEntradaCola) {
         this.momentoEntradaCola = momentoEntradaCola;
     }
-    
-    
 
+    public int getMomentoEntradaServicio() {
+        return momentoEntradaServicio;
+    }
+
+    public void setMomentoEntradaServicio(int momentoEntradaServicio) {
+        this.momentoEntradaServicio = momentoEntradaServicio;
+    }
+    
+    public int tiempoDeEspera(){
+        return momentoEntradaCola+momentoEntradaServicio;
+    }
+
+    public int getTiempoServicio() {
+        return tiempoServicio;
+    }
+
+    public void setTiempoServicio() {
+        this.tiempoServicio ++;
+    }
+    
+    public int calcluarTiempoSistema(){
+        return momentoEntradaCola+tiempoServicio;
+    } 
+   
     @Override
     public String toString() {
         return "Cliente{" + "Nombre=" + Nombre + ", numero=" + numero + '}';

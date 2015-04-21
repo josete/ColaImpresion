@@ -54,7 +54,8 @@ public class Simulacion extends Thread {
      */
     @Override
     public void run() {
-        while (tiempoMaximo > 0) {
+        int actual = 0;
+        while (actual<tiempoMaximo) {
             double creacionCliente = Math.random() * 1;
             try {
                 if (creacionCliente >= 0.5) {
@@ -62,7 +63,7 @@ public class Simulacion extends Thread {
                     //System.out.println(creacionCliente);
                     //System.out.println("¡¡Hay un nuevo cliente!!");
                     //System.out.println(" ");
-                    Cliente c= new Cliente("RAFA", tiempoMaximo, i);
+                    Cliente c= new Cliente("RAFA", actual, i);
                     imprenta.anadirCliente(c);
                     util.TmEnServicio(c);
                     System.out.println("El cliente es: "+c.toString());
@@ -71,7 +72,7 @@ public class Simulacion extends Thread {
                     //crear cliente
                     //Cliente("Angel", 12);
                     sleep(2000);
-                    tiempoMaximo -= 2;
+                    actual += 2;
                 }
                 if (imprenta.isEmpty() == false) {
                     
@@ -82,16 +83,19 @@ public class Simulacion extends Thread {
                     } else {
                         ///System.err.println("Tiempo de servicio Aleatorio: "+tiempoServicioAleatorio);
                         //System.out.println("Tiempo de servicio de cliente: "+tiempoServicioCliente);                        
-                        tiempoServicioCliente+=1;
+                        imprenta.getImpresora().getCliente().setTiempoServicio();
                         //System.out.println("Tiempo de servicio de cliente: "+tiempoServicioCliente);
                         //System.out.println(imprenta.getImpresora().getCliente().toString());
-                        if (tiempoServicioCliente == tiempoServicioAleatorio) {
+                        if (imprenta.getImpresora().getCliente().getTiempoServicio() == tiempoServicioAleatorio) {
                             imprenta.getImpresora().setOcupada(false);
-                            tiempoServicioCliente = 0;
+                            //tiempoServicioCliente = 0;
                         }
                     }
                     /*System.err.println("El cliente que esta en la impresora es: "
                             + imprenta.getImpresora().getCliente().toString());*/
+                    /*System.err.println(imprenta.getImpresora().getCliente().tiempoDeEspera());
+                    System.err.println(imprenta.getImpresora().getCliente().getTiempoServicio());*/
+                    System.err.println(imprenta.getImpresora().getCliente().tiempoDeEspera());
 
                 }
                 /**
