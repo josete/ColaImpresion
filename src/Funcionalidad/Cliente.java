@@ -5,6 +5,7 @@
  */
 package Funcionalidad;
 
+
 /**
  *
  * @author Usuario
@@ -13,10 +14,11 @@ public class Cliente {
 
     private String Nombre;
     private int numero;
-    int momentoEntradaCola;
-    int momentoEntradaServicio;
-    int tiempoServicio;
-    int tiempoSistema;
+    private int momentoEntradaCola;
+    private int momentoEntradaServicio;
+    private int tiempoServicio;
+    private int tiempoSistema;
+    private int tiempoServicioActual=0;
 
     public Cliente(String Nombre, int momentoEntradaCola,int num) {
         this.Nombre = Nombre;
@@ -56,25 +58,39 @@ public class Cliente {
         this.momentoEntradaServicio = momentoEntradaServicio;
     }
     
-    public int tiempoDeEspera(){
-        return momentoEntradaCola+momentoEntradaServicio;
+    public int calcularTiempoDeEspera(){
+        return momentoEntradaServicio-momentoEntradaCola;
     }
 
     public int getTiempoServicio() {
         return tiempoServicio;
     }
 
-    public void setTiempoServicio() {
-        this.tiempoServicio ++;
+    public void setTiempoServicio(int tiempoServicio) {
+        this.tiempoServicio = tiempoServicio;
     }
     
+    public int calcularTiempoCola(){
+        return momentoEntradaServicio-momentoEntradaCola;
+    }
     public int calcluarTiempoSistema(){
-        return momentoEntradaCola+tiempoServicio;
+        return tiempoServicio+calcularTiempoDeEspera();
     } 
+    
+    public void aumentarTiempoSErvicioAcual(){
+        tiempoServicioActual++;
+    }
+
+    public int getTiempoServicioActual() {
+        return tiempoServicioActual;
+    }
+    
+    
    
     @Override
     public String toString() {
-        return "Cliente{" + "Nombre=" + Nombre + ", numero=" + numero + '}';
+        return "Cliente{" + "Nombre=" + Nombre + ", numero=" + numero + ", tiempoDeEspera="+ calcularTiempoDeEspera()+
+                ", tiempoEnSistema="+calcluarTiempoSistema()+'}';
     }
 
     

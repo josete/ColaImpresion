@@ -29,5 +29,9 @@ public class Cola{
     public boolean isEmpty(){
       return cola.isEmpty();
     }
+    
+    public Cliente getCliente(){
+        return cola.element();
+    }
  
 }
