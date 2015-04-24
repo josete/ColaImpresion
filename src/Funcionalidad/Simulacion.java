@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class Simulacion extends Thread {
-
     private Random rnd = new Random();
     private Imprenta imprenta = new Imprenta();
     private static int tiempoMaximo;
@@ -68,6 +67,8 @@ public class Simulacion extends Thread {
     public void setProbabilidad(int probabilidad) {
         this.probabilidad = probabilidad;
     }
+   
+    
 
     /**
      * Metodo del hilo
@@ -94,6 +95,7 @@ public class Simulacion extends Thread {
                     sleep(2000);
                     actual += 2;
                 }
+                
             } catch (InterruptedException ex) {
                 Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
 
